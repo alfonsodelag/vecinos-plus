@@ -22,6 +22,12 @@ const serviceOptions = [...services.map((s) => s.title), "Otro"];
           <span>{siteConfig.whatsappDisplay}</span>
         </p>
         <p><strong class="text-ink">Email:</strong> {siteConfig.email}</p>
+        <p>
+          <strong class="text-ink">Ubicación:</strong>{" "}
+          <a class="hover:text-sageDeep transition-colors" href={siteConfig.mapsUrl} target="_blank" rel="noopener">
+            {siteConfig.address}
+          </a>
+        </p>
         <p><strong class="text-ink">Cobertura:</strong> {siteConfig.coverageArea}</p>
         <div>
           <strong class="text-ink">Horario:</strong>

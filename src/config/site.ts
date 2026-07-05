@@ -8,10 +8,10 @@ export const siteConfig = {
   whatsapp: "50767804453",
   whatsappDisplay: "6780-4453",
   email: "Gerencia.logisticanavarro@gmail.com",
-  address: "[DIRECCIÓN PENDIENTE]",
+  address: "PH 240, Parque Lefevre, Ciudad de Panamá",
   coverageArea: "Todo el país, de Panamá al interior",
-  mapsUrl: "",
-  mapsEmbedUrl: "",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=PH+240+Parque+Lefevre+Panama",
+  mapsEmbedUrl: "https://www.google.com/maps?q=PH+240+Parque+Lefevre+Panam%C3%A1&output=embed",
   appointmentNote: "Cotiza tu mudanza y coordinamos contigo.",
   hours: {
     weekdays: "Lun – Vie: 8:00 a.m. – 6:00 p.m.",

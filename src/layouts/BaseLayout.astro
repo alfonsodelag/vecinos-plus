@@ -22,6 +22,12 @@ const schema = {
   "@type": "MovingCompany",
   name: siteConfig.businessName,
   description: siteConfig.description,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.address,
+    addressLocality: "Panamá",
+    addressCountry: "PA"
+  },
   areaServed: "Panamá",
   url: canonical.toString(),
   sameAs: [siteConfig.social.instagram]

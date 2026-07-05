@@ -53,29 +53,50 @@ function renderChildren(children: SanityBlock["children"] = [], markDefs: Sanity
     .join("");
 }
 
+function renderBlock(block: SanityBlock): string {
+  const inner = renderChildren(block.children, block.markDefs);
+
+  switch (block.style) {
+    case "h1":
+      return `<h1 class="font-display text-3xl font-semibold text-ink mt-10 mb-4">${inner}</h1>`;
+    case "h2":
+      return `<h2 class="font-display text-2xl font-semibold text-ink mt-8 mb-3">${inner}</h2>`;
+    case "h3":
+      return `<h3 class="font-display text-xl font-semibold text-ink mt-6 mb-2">${inner}</h3>`;
+    case "h4":
+      return `<h4 class="font-semibold text-lg text-ink mt-4 mb-2">${inner}</h4>`;
+    case "blockquote":
+      return `<blockquote class="border-l-4 border-sage pl-5 italic text-cocoa my-6 py-1">${inner}</blockquote>`;
+    default:
+      return inner
+        ? `<p class="leading-7 text-cocoa mb-5">${inner}</p>`
+        : `<br />`;
+  }
+}
+
 export function blocksToHtml(blocks: SanityBlock[]): string {
-  return blocks
-    .map((block) => {
-      if (block._type !== "block") return "";
+  const html: string[] = [];
+  let listBuffer: string[] = [];
 
-      const inner = renderChildren(block.children, block.markDefs);
+  const flushList = () => {
+    if (listBuffer.length) {
+      html.push(`<ul class="list-disc pl-6 space-y-1.5 leading-7 text-cocoa mb-5">${listBuffer.join("")}</ul>`);
+      listBuffer = [];
+    }
+  };
 
-      switch (block.style) {
-        case "h1":
-          return `<h1 class="font-display text-3xl font-semibold text-ink mt-10 mb-4">${inner}</h1>`;
-        case "h2":
-          return `<h2 class="font-display text-2xl font-semibold text-ink mt-8 mb-3">${inner}</h2>`;
-        case "h3":
-          return `<h3 class="font-display text-xl font-semibold text-ink mt-6 mb-2">${inner}</h3>`;
-        case "h4":
-          return `<h4 class="font-semibold text-lg text-ink mt-4 mb-2">${inner}</h4>`;
-        case "blockquote":
-          return `<blockquote class="border-l-4 border-sage pl-5 italic text-cocoa my-6 py-1">${inner}</blockquote>`;
-        default:
-          return inner
-            ? `<p class="leading-7 text-cocoa mb-5">${inner}</p>`
-            : `<br />`;
-      }
-    })
-    .join("");
+  for (const block of blocks) {
+    if (block._type !== "block") continue;
+
+    if (block.listItem === "bullet") {
+      listBuffer.push(`<li>${renderChildren(block.children, block.markDefs)}</li>`);
+      continue;
+    }
+
+    flushList();
+    html.push(renderBlock(block));
+  }
+  flushList();
+
+  return html.join("");
 }
