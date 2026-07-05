@@ -27,11 +27,16 @@ export const faqs = [
   {
     question: "¿Puedo escribir por WhatsApp?",
     answer:
-      "Sí, puedes escribirnos al 6780-4453 para cotizar tu mudanza o resolver dudas rápido."
+      "Sí, puedes escribirnos al 6983-9498 para cotizar tu mudanza o resolver dudas rápido."
   },
   {
     question: "¿Qué información debo enviar para cotizar?",
     answer:
       "Punto de salida, destino, fecha aproximada, fotos o lista de artículos, si hay elevador o escaleras, y cualquier detalle importante de acceso."
+  },
+  {
+    question: "¿El dueño de Vecinos Plus participa en las mudanzas?",
+    answer:
+      "Sí, el dueño siempre está presente en cada mudanza. Eso nos ayuda a dar un trato más cercano y responsable de principio a fin."
   }
 ];

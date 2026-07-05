@@ -5,8 +5,8 @@ export const siteConfig = {
   description:
     "Vecinos Plus te ayuda con mudanzas, reubicaciones, envíos y acarreos en Panamá con un trato cercano, práctico y sin enredo.",
   url: "https://vecinos-plus.vercel.app",
-  whatsapp: "50767804453",
-  whatsappDisplay: "6780-4453",
+  whatsapp: "50769839498",
+  whatsappDisplay: "6983-9498",
   email: "Gerencia.logisticanavarro@gmail.com",
   address: "PH 240, Parque Lefevre, Ciudad de Panamá",
   coverageArea: "Todo el país, de Panamá al interior",

@@ -90,7 +90,7 @@ Usa placeholders si falta información real:
 
 No inventar dirección, correo, horario, flota, cantidad de camiones, años de experiencia, seguros, testimonios, precios ni garantías.
 
-**WhatsApp**: confirmado como `6780-4453`. `siteConfig.whatsapp` está definido en formato internacional (`"50767804453"`) en `src/config/site.ts`, así que todos los CTA de WhatsApp ya arman un link `wa.me` real con mensaje precargado.
+**WhatsApp**: confirmado como `6983-9498`. `siteConfig.whatsapp` está definido en formato internacional (`"50769839498"`) en `src/config/site.ts`, así que todos los CTA de WhatsApp ya arman un link `wa.me` real con mensaje precargado.
 
 ## Editar contenido
 
@@ -185,7 +185,7 @@ El dataset de Sanity (`jdls3x4j` / `production`) es compartido entre varios proy
 - Header y footer usan Vecinos Plus.
 - Servicios están actualizados (mudanzas, acarreos, reubicaciones, envíos).
 - Instagram apunta a `https://www.instagram.com/vecinosplus/`.
-- WhatsApp confirmado: 6780-4453 (`wa.me/50767804453`).
+- WhatsApp confirmado: 6983-9498 (`wa.me/50769839498`).
 - Logo real de Vecinos Plus en Header y Footer.
 - Colores usan la paleta Vecinos Plus (#01267E / #F47A0E / #FE2400).
 - SEO title y meta description actualizados.
