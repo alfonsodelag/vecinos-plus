@@ -152,9 +152,11 @@ https://www.instagram.com/vecinosplus/
 
 ## Imágenes
 
-Las fotos de mudanzas (`public/images/hero-bg.jpg`, `about-video.jpg`, `contact-pic.jpg`, `services/*.jpg`, `blog/*.jpg`) fueron sourceadas de Unsplash (licencia libre de uso) como placeholders de buena calidad mientras Vecinos Plus consigue fotos reales de su propia operación. Reemplázalas cuando tengas material real, manteniendo los mismos nombres de archivo para no tener que tocar el código.
+Las fotos de mudanzas (`public/images/hero-bg.jpg`, `about-video.jpg`, `contact-pic.jpg`, `services/*.jpg`) fueron sourceadas de Unsplash (licencia libre de uso) como placeholders de buena calidad mientras Vecinos Plus consigue fotos reales de su propia operación. `equipo-vecinos.jpg` sí es una foto real de un integrante del equipo. Reemplaza las de Unsplash cuando tengas material real, manteniendo los mismos nombres de archivo para no tener que tocar el código. Las 3 fotos del blog viven directamente en Sanity (subidas junto con cada artículo), no en `public/images`.
 
-El logo real de Vecinos Plus está en `public/images/logo.png` y se usa en el Header y el Footer. `public/images/footer-logo.png` es artwork del template anterior y quedó sin usar.
+El logo real de Vecinos Plus está en `public/images/logo.png` y se usa en el Header y el Footer.
+
+`public/images` solo contiene archivos que el sitio realmente usa: no quedan fotos, carpetas ni artwork del template dental anterior (doctor/, team/, gallery/, íconos, fondos, etc. fueron eliminados). Lo mismo aplica a la raíz del proyecto: se eliminaron los archivos HTML/CSS/JS/fuentes del template original pre-Astro (no formaban parte del build, ya estaban excluidos de Git).
 
 ## Repositorio
 
