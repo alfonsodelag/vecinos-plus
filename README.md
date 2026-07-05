@@ -2,6 +2,9 @@
 
 Sitio web para **Vecinos Plus**, una empresa de mudanzas, reubicaciones, envíos y acarreos en Panamá. El proyecto está construido para editarse rápidamente desde archivos locales, desplegarse en Vercel y transferirse de forma ordenada al cliente cuando corresponda.
 
+**Sitio en vivo**: https://vecinos-plus.vercel.app
+**Repositorio**: https://github.com/alfonsodelag/vecinos-plus
+
 ## Objetivo del sitio
 
 El sitio debe comunicar una marca joven, cercana y práctica: "tu vecino que te ayuda a resolver la mudanza". El visitante debe poder conocer los servicios, resolver dudas básicas y solicitar una cotización sin fricción.
