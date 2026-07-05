@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import Contact from "@/sections/Contact.astro";
+import { services } from "@/content/services";
+import { siteConfig } from "@/config/site";
+
+const description =
+  "Mudanzas residenciales, apartamentos y P.H., oficinas, reubicaciones, envíos, logística local, acarreos y transporte de artículos personales en Panamá.";
+---
+
+<BaseLayout
+  title="Servicios | Vecinos Plus"
+  description={description}
+>
+  <section class="section-pad bg-white">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow="Servicios"
+        title="Te ayudamos con lo que necesites mover."
+        intro="Cada mudanza se revisa según tu caso: volumen, acceso, distancia y fecha. Cuéntanos qué necesitas y lo cotizamos contigo."
+        align="center"
+      />
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <article class="card group overflow-hidden transition hover:-translate-y-1">
+            <div class="overflow-hidden">
+              <img
+                class="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
+                src={service.image}
+                alt={`${service.title} en ${siteConfig.businessName}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5">
+              <h2 class="font-display text-lg font-semibold text-ink">{service.title}</h2>
+              <p class="mt-2 text-sm leading-6 text-cocoa line-clamp-3">{service.description}</p>
+              <a
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sage hover:text-ink transition-colors"
+                href={`/services/${service.slug}`}
+              >
+                Ver detalles
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</BaseLayout>

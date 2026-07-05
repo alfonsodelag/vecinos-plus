@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { siteConfig, whatsappUrl } from "@/config/site";
+---
+
+<BaseLayout
+  title={`Página no encontrada | ${siteConfig.businessName}`}
+  description="La página que buscas no existe o fue movida. Vuelve al inicio de Vecinos Plus o escríbenos para ayudarte."
+>
+  <section class="section-pad bg-cream">
+    <div class="container-page flex min-h-[60vh] flex-col items-center justify-center text-center">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="mt-4 font-display text-6xl font-semibold text-ink sm:text-7xl">
+        Esta página se nos perdió
+      </h1>
+      <p class="mt-6 max-w-lg text-lg leading-7 text-cocoa">
+        La página que buscas no existe o fue movida. Revisa el enlace o vuelve al inicio para encontrar lo que necesitas.
+      </p>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a class="btn-primary" href="/">Volver al inicio</a>
+        <a class="btn-secondary" href="/services">Ver servicios</a>
+        <a class="btn-secondary" href={whatsappUrl} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

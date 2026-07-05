@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import WhyChooseVecinosPlus from "@/sections/WhyChooseVecinosPlus.astro";
+import Contact from "@/sections/Contact.astro";
+---
+
+<BaseLayout
+  title="Nosotros | Vecinos Plus"
+  description="Vecinos Plus es una empresa de mudanzas, acarreos y logística local en Panamá con un trato cercano, práctico y sin enredo."
+>
+  <section class="section-pad bg-white">
+    <div class="container-page grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <SectionTitle
+          eyebrow="Nosotros"
+          title="Tu vecino que te ayuda a resolver la mudanza."
+          intro="En Vecinos Plus no somos una empresa de logística fría. Somos el equipo que responde, coordina contigo y carga con lo pesado para que tu cambio sea más simple."
+        />
+        <p class="mt-6 text-base leading-8 text-cocoa">
+          Hablamos claro, sin vueltas raras ni lenguaje complicado. Nos enfocamos en resolver: qué hay que mover, cuándo, desde dónde y hacia dónde, para que puedas planificar tu mudanza con tranquilidad.
+        </p>
+        <p class="mt-4 text-base leading-8 text-cocoa">
+          Nuestro equipo: <strong class="text-ink">[EQUIPO PENDIENTE]</strong>.
+        </p>
+      </div>
+      <img
+        class="h-[34rem] w-full rounded-lg object-cover shadow-soft"
+        src="/images/about-video.jpg"
+        alt="Equipo de Vecinos Plus ayudando con una mudanza en Panamá"
+      />
+    </div>
+  </section>
+  <WhyChooseVecinosPlus />
+  <Contact />
+</BaseLayout>

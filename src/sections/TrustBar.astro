@@ -1,0 +1,26 @@
+---
+const items = [
+  { title: "Cotización fácil", detail: "Cuéntanos qué necesitas mover y te orientamos." },
+  { title: "Trato de tú a tú", detail: "Sin lenguaje complicado ni vueltas raras." },
+  { title: "Mudanzas sin enredo", detail: "Coordinación clara desde el primer mensaje." },
+  { title: "Casas, apartamentos y oficinas", detail: "Nos adaptamos al tipo de mudanza que necesites." },
+];
+---
+
+<section class="border-y border-borderc bg-shell">
+  <div class="container-page grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
+    {items.map((item) => (
+      <div class="flex items-start gap-3">
+        <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage/15 text-sageDeep">
+          <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <div>
+          <p class="text-sm font-semibold text-ink">{item.title}</p>
+          <p class="mt-0.5 text-xs leading-5 text-cocoa">{item.detail}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

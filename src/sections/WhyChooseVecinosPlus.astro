@@ -1,0 +1,40 @@
+---
+import SectionTitle from "@/components/SectionTitle.astro";
+
+const benefits = [
+  "Trato cercano",
+  "Servicio práctico",
+  "Mentalidad joven",
+  "Apoyo para diferentes necesidades",
+  "Comunicación sencilla",
+  "Ese plus de vecino",
+];
+---
+
+<section class="section-pad bg-cream">
+  <div class="container-page grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+    <div class="grid grid-cols-2 gap-4">
+      <img class="h-80 w-full rounded-lg object-cover" src="/images/about-video.jpg" alt="Equipo de Vecinos Plus ayudando con una mudanza en Panamá" loading="lazy" />
+      <img class="mt-10 h-80 w-full rounded-lg object-cover" src="/images/contact-pic.jpg" alt="Cajas de mudanza listas para transportar con Vecinos Plus" loading="lazy" />
+    </div>
+    <div>
+      <SectionTitle
+        eyebrow="Por qué elegir Vecinos Plus"
+        title="No se trata solo de mover cosas."
+        intro="Se trata de ayudarte en un momento de cambio, hablando claro y resolviendo contigo cada detalle de tu mudanza."
+      />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {benefits.map((benefit) => (
+          <div class="card flex items-start gap-3 p-5">
+            <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage/10">
+              <svg class="h-3 w-3 text-sageDeep" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+            <p class="text-sm font-semibold text-ink">{benefit}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

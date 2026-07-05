@@ -1,0 +1,166 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Contact from "@/sections/Contact.astro";
+import { sanityClient, blogPostsQuery, blogPostsParams, blogPostBySlugQuery, type SanityPost } from "@/lib/sanity";
+import { getPostImage, formatDate, blocksToHtml } from "@/lib/portableText";
+
+export async function getStaticPaths() {
+  let posts: SanityPost[] = [];
+  try {
+    posts = await sanityClient.fetch<SanityPost[]>(blogPostsQuery, blogPostsParams);
+  } catch (_) {}
+
+  return posts.map((post, i) => ({
+    params: { slug: post.slug },
+    props: { post, imageIndex: i },
+  }));
+}
+
+const { post: listPost, imageIndex } = Astro.props as { post: SanityPost; imageIndex: number };
+
+// Fetch the full post with body
+let post: SanityPost | null = null;
+try {
+  post = await sanityClient.fetch<SanityPost>(blogPostBySlugQuery, {
+    ...blogPostsParams,
+    slug: listPost.slug,
+  });
+} catch (_) {}
+
+if (!post) post = listPost;
+
+const bodyHtml = post.body ? blocksToHtml(post.body) : "";
+const coverImage = getPostImage(post, imageIndex);
+---
+
+<BaseLayout
+  title={`${post.title} | Vecinos Plus`}
+  description={post.excerpt}
+  image={coverImage}
+>
+  <!-- Breadcrumb -->
+  <nav class="border-b border-borderc bg-cream py-3">
+    <div class="container-page">
+      <ol class="flex items-center gap-2 text-xs text-cocoa">
+        <li><a class="hover:text-sage" href="/">Inicio</a></li>
+        <li class="text-ink/30">/</li>
+        <li><a class="hover:text-sage" href="/blog">Blog</a></li>
+        <li class="text-ink/30">/</li>
+        <li class="max-w-xs truncate text-ink font-medium">{post.title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero del artículo -->
+  <section class="section-pad bg-white">
+    <div class="container-page max-w-4xl">
+      <div class="flex items-center gap-3">
+        <span class="eyebrow">Blog</span>
+        {post.readTime && (
+          <span class="text-xs text-cocoa">· {post.readTime} min de lectura</span>
+        )}
+      </div>
+      <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-5xl">
+        {post.title}
+      </h1>
+      <p class="mt-5 text-lg leading-7 text-cocoa">{post.excerpt}</p>
+      <time
+        class="mt-4 block text-sm font-semibold text-sage"
+        datetime={post.publishedAt}
+      >
+        Publicado el {formatDate(post.publishedAt)}
+      </time>
+    </div>
+  </section>
+
+  <!-- Imagen de portada -->
+  <div class="container-page max-w-4xl">
+    <div class="overflow-hidden rounded-2xl shadow-soft">
+      <img
+        class="h-64 w-full object-cover sm:h-80 lg:h-96"
+        src={coverImage}
+        alt={post.title}
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <!-- Cuerpo del artículo -->
+  <section class="section-pad bg-white">
+    <div class="container-page max-w-3xl">
+      {bodyHtml ? (
+        <div class="prose-content" set:html={bodyHtml} />
+      ) : (
+        <p class="text-cocoa">Contenido no disponible.</p>
+      )}
+
+      <!-- CTA al final del artículo -->
+      <div class="mt-12 rounded-2xl bg-shell p-8 text-center">
+        <p class="font-display text-xl font-semibold text-ink">
+          ¿Tienes una mudanza en mente?
+        </p>
+        <p class="mt-2 text-sm text-cocoa">
+          Cuéntanos qué necesitas mover y te ayudamos a cotizarlo.
+        </p>
+        <a class="btn-primary mt-5" href="/#contacto">Cotizar mudanza</a>
+      </div>
+
+      <!-- Navegación -->
+      <div class="mt-10 border-t border-borderc pt-8">
+        <a
+          class="inline-flex items-center gap-2 text-sm font-semibold text-sage hover:text-ink transition-colors"
+          href="/blog"
+        >
+          <svg class="h-4 w-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+          Volver al blog
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</BaseLayout>
+
+<style>
+  .prose-content :global(h2) {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #01267e;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-content :global(h3) {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #01267e;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-content :global(p) {
+    line-height: 1.75;
+    color: #54607d;
+    margin-bottom: 1.25rem;
+  }
+  .prose-content :global(strong) {
+    color: #01267e;
+    font-weight: 600;
+  }
+  .prose-content :global(blockquote) {
+    border-left: 4px solid #f47a0e;
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: #54607d;
+    margin: 1.5rem 0;
+  }
+  .prose-content :global(a) {
+    color: #b8540a;
+    text-decoration: underline;
+  }
+  .prose-content :global(a:hover) {
+    color: #01267e;
+  }
+</style>

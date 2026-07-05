@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import Contact from "@/sections/Contact.astro";
+import { sanityClient, blogPostsQuery, blogPostsParams, type SanityPost } from "@/lib/sanity";
+import { getPostImage, formatDate } from "@/lib/portableText";
+
+let posts: SanityPost[] = [];
+try {
+  posts = await sanityClient.fetch<SanityPost[]>(blogPostsQuery, blogPostsParams);
+} catch (_) {}
+---
+
+<BaseLayout
+  title="Blog de mudanzas | Vecinos Plus"
+  description="Consejos prácticos sobre mudanzas, acarreos y logística local en Panamá con Vecinos Plus."
+>
+  <section class="section-pad bg-white">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow="Blog"
+        title="Consejos prácticos para tu próxima mudanza."
+        intro="Información clara y útil para planificar tu mudanza sin estrés. Publicaciones sobre empaque, coordinación y logística."
+        align="center"
+      />
+
+      {posts.length > 0 ? (
+        <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, i) => (
+            <article class="card group overflow-hidden transition hover:-translate-y-1">
+              <div class="overflow-hidden">
+                <img
+                  class="h-52 w-full object-cover transition duration-300 group-hover:scale-105"
+                  src={getPostImage(post, i)}
+                  alt={post.title}
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3">
+                  <time
+                    class="text-xs font-semibold uppercase tracking-[0.14em] text-sage"
+                    datetime={post.publishedAt}
+                  >
+                    {formatDate(post.publishedAt)}
+                  </time>
+                  {post.readTime && (
+                    <span class="text-xs text-cocoa">· {post.readTime} min de lectura</span>
+                  )}
+                </div>
+                <h2 class="mt-3 font-display text-xl font-semibold leading-snug text-ink">
+                  {post.title}
+                </h2>
+                <p class="mt-3 line-clamp-3 text-sm leading-6 text-cocoa">{post.excerpt}</p>
+                <a
+                  class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-sage hover:text-ink transition-colors"
+                  href={`/blog/${post.slug}`}
+                >
+                  Leer artículo completo
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="mt-12 text-center text-sm text-cocoa">
+          Próximamente nuevos artículos. ¡Vuelve pronto!
+        </p>
+      )}
+    </div>
+  </section>
+  <Contact />
+</BaseLayout>

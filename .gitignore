@@ -1,0 +1,36 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.env.local
+.env.production
+.env.development
+.env.preview
+*.log
+.DS_Store
+
+.vercel
+
+# Sanity CLI local runtime cache
+.sanity/
+
+# Legacy pre-Astro HTML template assets (not used by the Astro build)
+/Source/
+/css/
+/js/
+/img/
+/fonts/
+/sass/
+/about.html
+/blog.html
+/blog-details.html
+/contact.html
+/doctor.html
+/index.html
+/main.html
+/pricing.html
+/services.html
+/readme.txt
+
+.vercel

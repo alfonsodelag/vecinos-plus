@@ -1,0 +1,62 @@
+---
+import { siteConfig, whatsappUrl } from "@/config/site";
+
+const quickLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/services", label: "Servicios" },
+  { href: "/about", label: "Nosotros" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contacto" }
+];
+---
+
+<footer class="bg-ink text-white">
+  <div class="container-page grid gap-10 py-14 md:grid-cols-[1.1fr_0.7fr_0.7fr_0.9fr]">
+    <div>
+      <img src="/images/logo.png" alt={siteConfig.businessName} class="h-9 w-auto rounded-md" width="162" height="77" />
+      <p class="mt-4 max-w-md text-sm leading-6 text-white/70">{siteConfig.description}</p>
+      <a class="btn-primary mt-6" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Cotizar mudanza</a>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">Enlaces</h2>
+      <ul class="mt-4 space-y-3 text-sm text-white/80">
+        {quickLinks.map((link) => (
+          <li><a class="hover:text-white transition" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">Contacto</h2>
+      <ul class="mt-4 space-y-3 text-sm text-white/80">
+        <li>{siteConfig.whatsappDisplay}</li>
+        <li>{siteConfig.email}</li>
+        <li>{siteConfig.address}</li>
+        {siteConfig.social.instagram && (
+          <li>
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition"
+            >
+              Síguenos en Instagram
+            </a>
+          </li>
+        )}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">Horario y cobertura</h2>
+      <ul class="mt-4 space-y-3 text-sm text-white/80">
+        <li>{siteConfig.hours.weekdays}</li>
+        <li class="text-white/60">{siteConfig.coverageArea}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container-page flex flex-col gap-2 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} {siteConfig.businessName}. Todos los derechos reservados.</p>
+      <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-white/80 transition">@vecinosplus</a>
+    </div>
+  </div>
+</footer>

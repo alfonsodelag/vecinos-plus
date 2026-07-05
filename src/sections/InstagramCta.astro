@@ -1,0 +1,23 @@
+---
+import { siteConfig } from "@/config/site";
+---
+
+<section class="section-pad bg-white">
+  <div class="container-page">
+    <div class="rounded-2xl bg-ink px-8 py-12 text-center text-white sm:px-16">
+      <p class="eyebrow text-rose">Instagram</p>
+      <h2 class="mt-3 font-display text-2xl font-semibold sm:text-3xl">Síguenos en Instagram</h2>
+      <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-white/75">
+        Conoce más sobre Vecinos Plus, nuestros servicios y novedades en Instagram.
+      </p>
+      <a
+        class="mt-7 inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5"
+        href={siteConfig.social.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        @vecinosplus
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+---
+import SectionTitle from "@/components/SectionTitle.astro";
+import { services } from "@/content/services";
+import { siteConfig, whatsappUrl } from "@/config/site";
+
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+const serviceOptions = [...services.map((s) => s.title), "Otro"];
+---
+
+<section id="contacto" class="section-pad bg-shell">
+  <div class="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+    <div>
+      <SectionTitle
+        eyebrow="Cotización"
+        title="Cuéntanos qué necesitas mover."
+        intro="Mándanos los detalles de tu mudanza, acarreo o envío y te ayudamos a revisar la mejor forma de resolverlo. También puedes escribirnos por WhatsApp para una respuesta más rápida."
+      />
+      <div class="mt-8 space-y-3 text-sm leading-6 text-cocoa">
+        <p>
+          <strong class="text-ink">WhatsApp / teléfono:</strong>{" "}
+          <span>{siteConfig.whatsappDisplay}</span>
+        </p>
+        <p><strong class="text-ink">Email:</strong> {siteConfig.email}</p>
+        <p><strong class="text-ink">Cobertura:</strong> {siteConfig.coverageArea}</p>
+        <div>
+          <strong class="text-ink">Horario:</strong>
+          <ul class="mt-1 space-y-0.5 pl-0">
+            <li>{siteConfig.hours.weekdays}</li>
+          </ul>
+        </div>
+        <p class="font-semibold text-sageDeep">{siteConfig.appointmentNote}</p>
+      </div>
+      <a class="btn-primary mt-8" href={whatsappUrl} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+
+    <form class="card grid gap-4 p-6" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={web3formsKey ?? ""} />
+      <input type="hidden" name="subject" value={`Nueva cotización desde ${siteConfig.businessName}`} />
+      <input class="rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" type="text" name="name" placeholder="Nombre" required />
+      <div class="grid gap-4 sm:grid-cols-2">
+        <input class="rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" type="tel" name="phone" placeholder="WhatsApp o teléfono" required />
+        <select class="rounded-md border border-borderc px-4 py-3 text-sm text-cocoa focus:border-sage focus:ring-sage" name="service" required>
+          <option value="">Tipo de servicio</option>
+          {serviceOptions.map((title) => <option value={title}>{title}</option>)}
+        </select>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <input class="rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" type="text" name="origin" placeholder="Punto de salida" required />
+        <input class="rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" type="text" name="destination" placeholder="Destino" required />
+      </div>
+      <input class="rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" type="text" name="estimated_date" placeholder="Fecha estimada (opcional)" />
+      <textarea class="min-h-32 rounded-md border border-borderc px-4 py-3 text-sm focus:border-sage focus:ring-sage" name="message" placeholder="Cuéntanos qué necesitas mover: cajas, muebles, elevador, escaleras, estacionamiento, etc." required></textarea>
+      {!web3formsKey && (
+        <p class="rounded-md bg-rose/10 px-4 py-3 text-sm text-cocoa">
+          Configura PUBLIC_WEB3FORMS_ACCESS_KEY en Vercel o en tu archivo .env local.
+        </p>
+      )}
+      <button class="btn-primary" type="submit">Solicitar cotización</button>
+      <p class="text-center text-xs text-cocoa">Mientras más detalles nos compartas, mejor podremos orientarte.</p>
+    </form>
+  </div>
+</section>

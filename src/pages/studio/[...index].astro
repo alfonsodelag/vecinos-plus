@@ -1,0 +1,28 @@
+---
+import SanityStudio from "@/components/SanityStudio";
+
+export function getStaticPaths() {
+  return [{ params: { index: undefined } }];
+}
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vecinos Plus — Studio</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      html, body, #sanity-studio-root {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sanity-studio-root">
+      <SanityStudio client:only="react" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+---
+import { siteConfig, whatsappUrl } from "@/config/site";
+
+const navItems = [
+  { href: "/", label: "Inicio" },
+  { href: "/services", label: "Servicios" },
+  { href: "/#proceso", label: "Cómo funciona" },
+  { href: "/#faq", label: "Preguntas frecuentes" },
+  { href: "/contact", label: "Contacto" }
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-borderc bg-white/90 backdrop-blur">
+  <div class="hidden bg-ink py-2 text-xs text-white lg:block">
+    <div class="container-page flex items-center justify-between">
+      <p>{siteConfig.whatsappDisplay}</p>
+      <p>{siteConfig.appointmentNote}</p>
+    </div>
+  </div>
+  <div class="container-page flex min-h-20 items-center justify-between gap-4">
+    <a href="/" class="flex items-center" aria-label={`${siteConfig.businessName} inicio`}>
+      <img
+        src="/images/logo.png"
+        alt={siteConfig.businessName}
+        class="h-10 w-auto rounded-md"
+        width="162"
+        height="77"
+      />
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm font-medium text-cocoa lg:flex" aria-label="Navegación principal">
+      {navItems.map((item) => <a class="transition hover:text-ink" href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <a class="btn-secondary px-4 py-2.5" href="/contact">Cotizar mudanza</a>
+      <a class="btn-primary px-4 py-2.5" href={whatsappUrl} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+
+    <details class="relative lg:hidden">
+      <summary class="flex size-11 cursor-pointer list-none items-center justify-center rounded-md border border-borderc bg-white text-ink" aria-label="Abrir menú">
+        <span class="text-2xl leading-none">≡</span>
+      </summary>
+      <div class="absolute right-0 mt-3 w-72 rounded-lg border border-borderc bg-white p-4 shadow-soft">
+        <nav class="grid gap-2 text-sm font-medium text-cocoa" aria-label="Navegación móvil">
+          {navItems.map((item) => <a class="rounded-md px-3 py-2 hover:bg-shell hover:text-ink" href={item.href}>{item.label}</a>)}
+        </nav>
+        <a class="btn-primary mt-4 w-full" href={whatsappUrl} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </details>
+  </div>
+</header>
