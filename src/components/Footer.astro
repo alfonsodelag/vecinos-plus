@@ -49,6 +49,7 @@ const quickLinks = [
       <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">Horario y cobertura</h2>
       <ul class="mt-4 space-y-3 text-sm text-white/80">
         <li>{siteConfig.hours.weekdays}</li>
+        {siteConfig.hours.saturday && <li>{siteConfig.hours.saturday}</li>}
         <li class="text-white/60">{siteConfig.coverageArea}</li>
       </ul>
     </div>
